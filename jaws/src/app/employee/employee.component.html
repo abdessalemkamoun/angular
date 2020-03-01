@@ -1,0 +1,53 @@
+<div class="container employe" fxLayout="column" fxLayoutGap="100px">
+<div class="row">
+
+
+    <div class="col-md-8">
+        <h2>Liste des employés</h2>
+        <div id="pricing-table" class="clear">
+            <div class="plan col-md-4"  *ngFor="let emp of employes">
+                <h3>{{ emp.name }}
+                <br>
+                {{ emp.prenom }}
+                <span><a href="{{emp.image}}" target="_blank"><img src="{{emp.image}}" class="em"></a></span>
+                </h3>
+                <a (click)="remove(emp)" class="signup" href="">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </a>
+                <a (click)="remove(emp)" class="signup" href="">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+
+
+            </div>
+            </div>
+      </div>
+  <div class="col-md-4">
+
+      <div class="login-page">
+          <div class="form">
+            <h1>Ajout Nouveau Employee</h1>
+        <form role="form" (ngSubmit)="add()" #employeeForm="ngForm" class="login-form">
+                  <div class="form-content" >
+                      <div class="form-group">
+                          <input type="text" class="form-control input-underline input-lg" id="1" placeholder="name"  [(ngModel)]="employe.name" name="name">
+                      </div>
+
+                      <div class="form-group">
+                          <input type="text" class="form-control input-underline input-lg" id="2" placeholder="prenom" [(ngModel)]="employe.prenom" name="prenom">
+                      </div>
+
+                      <div class="form-group">
+                          <input type="file" class="form-control input-underline input-lg" id="3"  [(ngModel)]="employe.image" name="image" (change)="handleFileSelect($event)">
+                          </div>
+                  </div>
+                  <img [src]="employe.image">
+
+                  <button class="btn rounded-btn" type="submit" [disabled]="!employeeForm.form.valid"> ajouter un employee </button>&nbsp;
+              </form>
+               </div>
+        </div>
+
+  </div>
+
+</div>
+

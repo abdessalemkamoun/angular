@@ -1,0 +1,21 @@
+<div class="login-page" [@routerTransition]>
+  <div class="row justify-content-md-center">
+      <div class="col-md-4">
+          <img src="assets/images/logo.png" width="150px" class="user-avatar" />
+          <h1>Reconnaissance Faciale</h1>
+          <form role="form" (ngSubmit)="login()"  #loginForm="ngForm" class="form-content">
+
+                  <div class="form-group" >
+                      <input type="text" [(ngModel)]="credential.username" class="form-control input-underline input-lg" name="username" placeholder="username">
+                  </div>
+
+                  <div class="form-group">
+                      <input type="password" class="form-control input-underline input-lg" [(ngModel)]="credential.password" name="password" placeholder="Password">
+                  </div>
+
+              <button class="btn rounded-btn" type="submit" [disabled]="!loginForm.form.valid"> Log in </button>
+
+          </form>
+      </div>
+  </div>
+</div>

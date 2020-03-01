@@ -1,0 +1,35 @@
+.zone{
+  margin:10px;
+}
+.camera{
+  display: inline-flex;
+  i{
+    margin: 5px
+  }
+}
+.zones{
+  top: 6px;
+  position: absolute;
+  right: 10px;;
+i{
+  margin: 5px
+}
+
+
+}
+.bg-success_zone {
+  background-color: #08B2E3 !important;
+}
+.rotate{
+  margin-bottom: 10px;
+}
+.bg-add{
+  background: #E84826;
+    padding-top: 13%;
+    padding-left: 14%;
+    i{
+      border: 2px solid white;
+      border-radius: 82px;
+      padding: 30px;
+    }
+}

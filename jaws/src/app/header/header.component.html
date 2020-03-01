@@ -1,0 +1,55 @@
+
+
+
+<!--<mat-toolbar color="primary" >
+  <span><img src="" height=20 width=400></span>
+  <a md-button routerLink="/home" routerLinkActive="active"><span class="fa fa-home fa-lg"></span> Home</a>
+  <a md-button routerLink="/register" routerLinkActive="active"><span class="fa fa-register fa-lg"></span> register</a>
+  <a md-button routerLink="/blacklist" routerLinkActive="active"><span class="fa fa-blacklist fa-lg"></span> blacklist</a>
+  <a md-button routerLink="/employee" routerLinkActive="active"><span class="fa fa-employee fa-lg"></span> employee</a>
+  <a md-button routerLink="/zones" routerLinkActive="active"><span class="fa fa-zones fa-lg"></span> zones</a>
+
+
+</mat-toolbar>-->
+
+<nav  class="navbar navbar-expand-lg">
+  <a  class="navbar-brand" href="#">Reconnaissance </a>
+  <button   class="navbar-toggler" type="button">
+
+      <i   aria-hidden="true" class="fa fa-bars text-muted"></i>
+  </button>
+  <div   class="collapse navbar-collapse">
+      <div class="form-inline my-2 my-lg-0">
+
+          <a routerLink="/home"  class="nav-link mt-1" href="javascript:void(0)"  >
+             Home
+          </a>
+          <a  routerLink="/register" class="nav-link mt-1" href="javascript:void(0)" *ngIf="role == 'admin'" >
+            Register
+        </a>
+        <a  routerLink="/blacklist" class="nav-link mt-1" href="javascript:void(0)" *ngIf="role == 'admin' || role == 'responsable'"  >
+          Blacklist
+      </a>
+      <a  routerLink="/employee" class="nav-link mt-1" href="javascript:void(0)" *ngIf="role == 'admin' || role == 'responsable'"  >
+        Employee
+    </a>
+    <a  routerLink="/zones" class="nav-link mt-1" href="javascript:void(0)" *ngIf="role == 'admin'"  >
+      Zones
+  </a>
+
+
+      </div>
+      <ul   class="navbar-nav ml-auto">
+
+
+          <li class="dropdown media">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i   class="fa fa-user"></i>  {{user.username}}
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a (click)="logout()">Logout</a></li>
+              <li><a href="#">Profile</a></li>
+            </ul>
+          </li>
+      </ul>
+  </div>
+</nav>

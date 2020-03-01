@@ -1,0 +1,165 @@
+<!-- Zone delete/affichage/nbr Camera -->
+<div class="row mb-3">
+    <div class="col-xl-3 col-sm-6 zone" *ngFor="let zone of zones">
+        <div class="card bg-success_zone text-white h-100">
+            <div class="card-body bg-success_zone">
+                <div class="rotate">
+                    <i class="fa fa-support fa-5x"></i>
+                </div>
+                <div class="zones">
+                 <a (click)="deleteZone(zone.id)"> <i class="fa fa-trash"></i></a>
+                 <a (click)="ShowZone(zone.id)">   <i class="fa fa-pencil"></i></a>
+                </div>
+                <h6 class="text-uppercase"> Nom de la zone: {{zone.name}}</h6>
+               <span *ngIf="zone.cameras">Camera: {{zone.cameras.length}}</span>
+               <br><hr>
+               <div class="camera">
+                  <a (click)="showCamera(zone.id)"> <i class="fa fa-video-camera" aria-hidden="true"></i></a>
+                   <a (click)="showCameraAdd(zone.id)"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 zone">
+      <div class="card bg-add text-white h-100">
+          <div class="card-body bg-add">
+              <a (click)="ajoutZone()" title="Ajouter une Nouvelle Zone"> <i class="fa fa-plus fa-5x"></i> </a>
+          </div>
+      </div>
+  </div>
+
+</div>
+
+
+  <!-- Modal Camera delete / list / update -->
+  <div class="modal fade" [ngClass]="{'show':cameramodal}" [ngStyle]="{'display':cameramodal ? 'block' : 'none'}" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)='closeCamer()'>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <td>Name</td>
+                <td>IP</td>
+                <td>Actions</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let came of myCamDataModal">
+                  <td><input class="form-control" [(ngModel)]="came.name"></td>
+                  <td><input class="form-control" [(ngModel)]="came.addresseip"></td>
+                  <td>
+                    <a (click)="updateCamera(came)"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+                    <a (click)="DeleteCam(came)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)='closeCamer()'>Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal Camera Create -->
+  <div class="modal fade" [ngClass]="{'show':cameramodalCreate}" [ngStyle]="{'display':cameramodalCreate ? 'block' : 'none'}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Camera zone</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)='closeCamerCreate()'>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+                <div class="form-control">
+                  <label for="">Name</label>
+                    <input class="form-control" [(ngModel)]="cameraAdd.name">
+                </div>
+                <div class="form-control">
+                  <label>Adress IP</label>
+                    <input class="form-control" [(ngModel)]="cameraAdd.addresseip">
+                  </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)='closeCamerCreate()'>Close</button>
+            <button type="button" class="btn btn-primary" (click)='submitCamera(cameraAdd)'>Add Camera</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Modal Zone Update -->
+<div class="modal fade" [ngClass]="{'show':zoneModalUpdate}" [ngStyle]="{'display':zoneModalUpdate ? 'block' : 'none'}" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update Zone </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)='closeZoneUpdate()'>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+              <div class="form-control">
+                <label for="">Name</label>
+                  <input class="form-control" [(ngModel)]="zon.name">
+              </div>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)='closeZoneUpdate()'>Close</button>
+          <button type="button" class="btn btn-primary" (click)='updatezone(zon)'>Update Zone</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal Zone Create -->
+<div class="modal fade" [ngClass]="{'show':zoneModalCreate}" [ngStyle]="{'display':zoneModalCreate ? 'block' : 'none'}" id="exampleModal23" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Ajouter Zone</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)='closeZoneCreate()'>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+              <div class="form-control">
+                <label for="">Name</label>
+                  <input class="form-control" [(ngModel)]="zoneAdd.name">
+              </div>
+              </div>
+              </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"  (click)='closeZoneCreate()'>Close</button>
+          <button type="button" class="btn btn-primary" (click)='submitZonne(zoneAdd)'>Add Zone</button>
+        </div>
+      </div>
+    </div>
+  </div>
+

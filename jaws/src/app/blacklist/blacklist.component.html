@@ -1,0 +1,55 @@
+<div class="container employe" fxLayout="column" fxLayoutGap="100px">
+<div class="row">
+
+
+    <div class="col-md-8">
+        <h2>Liste des personnes recherchés </h2>
+        <table class=" table table-bordered">
+          <thead class="thead-dark">
+
+            <tr>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Photo</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of blacks">
+              <td>{{ emp.nom }}</td>
+              <td>{{ emp.prenom }}</td>
+              <td><a href="{{emp.image}}" target="_blank"><img src="{{emp.image}}" width="250px"></a></td>
+              <td class="action">
+                <a (click)="remove(emp)">  <i class="fa fa-trash-o" aria-hidden="true"></i></a>  </td>
+
+                <td>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  <div class="col-md-4">
+      <h1>ajout personne recherché </h1>
+      <form role="form" (ngSubmit)="add()" #employeeForm="ngForm">
+          <div class="form-content" >
+              <div class="form-group">
+                  <input type="text" class="form-control input-underline input-lg" id="1" placeholder="name"  [(ngModel)]="black.nom" name="name">
+              </div>
+
+              <div class="form-group">
+                  <input type="text" class="form-control input-underline input-lg" id="2" placeholder="prenom" [(ngModel)]="black.prenom" name="prenom">
+              </div>
+
+              <div class="form-group">
+                  <input type="file" class="form-control input-underline input-lg" id="3"  [(ngModel)]="black.image" name="image" (change)="handleFileSelect($event)">
+                  </div>
+          </div>
+          <img [src]="black.image">
+
+          <button class="btn rounded-btn" type="submit" [disabled]="!employeeForm.form.valid"> ajouter une personne recherché </button>&nbsp;
+      </form>
+  </div>
+
+</div>
+
