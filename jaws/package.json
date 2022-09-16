@@ -29,7 +29,7 @@
     "@fortawesome/fontawesome-free-webfonts": "^1.0.6",
     "@types/socket.io-client": "^1.4.32",
     "angular-material": "^1.1.8",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "buffer": "^5.1.0",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
